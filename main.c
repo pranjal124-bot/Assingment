@@ -1,108 +1,117 @@
-#include<stdio.h>
-#include"mylib.h"
-#include"arraylib.h"
-// Main menu-driven program
-int main(){
-    int choice, num;
-    do{
-        printf("\n===== MENU =====\n");
-        printf("1. Check Armstrong Number\n");
-        printf("2. Check Adams Number\n");
-        printf("3. Check Prime Palindrome Number\n");
-        printf("4. Finding Max Index\n");
-        printf("5. Finding Min Index\n");
-        printf("6. Finding The Average Of The Array\n");
-        printf("7. Display The Array\n");
-        printf("8. Reverse The Array\n");
-        printf("9. Sort The Array\n");
-        printf("10. Linear Searching In The Array\n");
-        printf("11. Exit The Program\n");
+#include <stdio.h>
+#include "mylib.h"
+#include "arraylib.h"
+
+int main() {
+    int choice, number;
+
+    do {
+        printf("\n===== MAIN MENU =====\n");
+        printf("1. Test Armstrong Number\n");
+        printf("2. Test Adams Number\n");
+        printf("3. Test Prime Palindrome Number\n");
+        printf("4. Find Max Index in Array\n");
+        printf("5. Find Min Index in Array\n");
+        printf("6. Compute Array Average\n");
+        printf("7. Display Array\n");
+        printf("8. Reverse Array\n");
+        printf("9. Sort Array\n");
+        printf("10. Linear Search in Array\n");
+        printf("11. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
-        if (choice == 11){
-            printf("Exiting Program. Goodbye!\n");
+
+        if (choice == 11) {
+            printf("Exiting program. Goodbye!\n");
             break;
         }
-        if(choice>=1 && choice<=3){
-        printf("Enter a number: ");
-        scanf("%d", &num);
-        switch(choice){
-            case 1:
-                if (isArmstrong(num))
-                    printf("%d is an Armstrong number.\n", num);
-                else
-                    printf("%d is NOT an Armstrong number.\n", num);
-                break;
-            case 2:
-                if (isAdams(num))
-                    printf("%d is an Adams number.\n", num);
-                else
-                    printf("%d is NOT an Adams number.\n", num);
-                break;
-            case 3:
-                if (isPrimePalindrome(num))
-                    printf("%d is a Prime Palindrome number.\n", num);
-                else
-                    printf("%d is NOT a Prime Palindrome number.\n", num);
-                break;
-            default:
-                printf("Invalid choice!\n");
-    	}
-		}
-		if(choice>=4 && choice<=10){
-		int size;
-		printf("Enter the size of the array: ");
-        scanf("%d", &size);
-        int arr[size];
-        printf("Enter elements:");
-        int i=0;
-		while(i<size){
-        	scanf("%d", &arr[i]);
-        	i++;
-		}
-		int maxindex,minindex,value,search;
-		float average;
-        switch(choice){
-            case 4: 
-                maxindex = findMaxIndex(arr, size);
-                printf("The Max Value Containing Index is %d\n", maxindex);
-                break;
-            case 5:
-                minindex = findMinIndex(arr, size);
-                printf("The Min Value Containing Index is %d\n", minindex);
-                break;
-            case 6:
-                average = findAverage(arr, size);
-                printf("The Average of the Array is %.2f\n", average);
-                break;
-            case 7:
-                printf("The Array is: ");
-                displayArray(arr, size);
-                break;
-            case 8:
-                reverseArray(arr, size);
-                printf("The Reversed Array is: ");
-                displayArray(arr, size);
-                break;
-            case 9:
-                sortArray(arr, size);
-                break;
-            case 10:
-                printf("Enter the number you want to search in the Array: ");
-                scanf("%d", &value);
-                search = linearSearch(arr, size, value);
-                if (search != -1)
-                    printf("The number was found at index %d\n", search);
-                else
-                    printf("The number was not found in the array.\n");
-                break;
-            default:
-                printf("Enter a Valid Choice\n");
-        	}
-			}else{
-				printf("Enter a valid Choice\n");
-			}
-        	
-		}while(choice!=11);
-		return 0;
+
+        // Number-based operations
+        if (choice >= 1 && choice <= 3) {
+            printf("Enter a number: ");
+            scanf("%d", &number);
+
+            switch (choice) {
+                case 1:
+                    if (isArmstrong(number))
+                        printf("%d is an Armstrong number.\n", number);
+                    else
+                        printf("%d is NOT an Armstrong number.\n", number);
+                    break;
+                case 2:
+                    if (isAdams(number))
+                        printf("%d is an Adams number.\n", number);
+                    else
+                        printf("%d is NOT an Adams number.\n", number);
+                    break;
+                case 3:
+                    if (isPrimePalindrome(number))
+                        printf("%d is a Prime Palindrome number.\n", number);
+                    else
+                        printf("%d is NOT a Prime Palindrome number.\n", number);
+                    break;
+                default:
+                    printf("Invalid choice!\n");
+            }
+        }
+
+        // Array-based operations
+        if (choice >= 4 && choice <= 10) {
+            int size;
+            printf("Enter array size: ");
+            scanf("%d", &size);
+
+            int arr[size];
+            printf("Enter array elements: ");
+            for (int i = 0; i < size; i++) {
+                scanf("%d", &arr[i]);
+            }
+
+            int maxIdx, minIdx, value, searchResult;
+            float avg;
+
+            switch (choice) {
+                case 4:
+                    maxIdx = findMaxIndex(arr, size);
+                    printf("Index of maximum value: %d\n", maxIdx);
+                    break;
+                case 5:
+                    minIdx = findMinIndex(arr, size);
+                    printf("Index of minimum value: %d\n", minIdx);
+                    break;
+                case 6:
+                    avg = findAverage(arr, size);
+                    printf("Average of the array: %.2f\n", avg);
+                    break;
+                case 7:
+                    printf("Array elements: ");
+                    displayArray(arr, size);
+                    break;
+                case 8:
+                    reverseArray(arr, size);
+                    printf("Reversed array: ");
+                    displayArray(arr, size);
+                    break;
+                case 9:
+                    sortArray(arr, size);
+                    break;
+                case 10:
+                    printf("Enter number to search: ");
+                    scanf("%d", &value);
+                    searchResult = linearSearch(arr, size, value);
+                    if (searchResult != -1)
+                        printf("Number found at index %d\n", searchResult);
+                    else
+                        printf("Number not found in the array.\n");
+                    break;
+                default:
+                    printf("Enter a valid choice.\n");
+            }
+        } else if (choice < 1 || choice > 11) {
+            printf("Enter a valid choice.\n");
+        }
+
+    } while (choice != 11);
+
+    return 0;
 }
