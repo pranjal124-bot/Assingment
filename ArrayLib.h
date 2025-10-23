@@ -1,84 +1,74 @@
-//Function for finding max value containg index
-int findMaxIndex(int arr[], int size){
-    int maxindex = 0;
-    int i=0;
-	while(i<size){
-		if(arr[i] > arr[maxindex]){
-			maxindex = i;
-		}
-		i++;
-	}
-    return maxindex;
+
+int findMaxIndex(int arr[], int n) {
+    int maxPos = 0;
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > arr[maxPos])
+            maxPos = i;
+    }
+    return maxPos ;
 }
-//Function for finding min value containing index
-int findMinIndex(int arr[], int size){
-    int minindex = 0;
-    int i=0;
-	while(i<size){
-		if(arr[i] < arr[minindex]){
-			minindex = i;
-		}
-		i++;
-	}
-    return minindex;
+
+int findMinIndex(int arr[], int n) {
+    int minPos = 0;
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < arr[minPos])
+            minPos = i;
+    }
+    return minPos ;
 }
-//Function for finding the average of the array
-float findAverage(int arr[], int size){
-    int sum = 0;
-    int i=0;
-    while(i<size){
-    	sum += arr[i];
-    	i++;
-	}
-    return (float)sum/size;
+
+
+float findAverage (int arr[], int n) {
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total += arr[i];
+    }
+    return (float) total / n ;
 }
-//Display the array
-int displayArray(int arr[], int size){
-	int i=0;
-	while(i<size){
-		printf("%d ",arr[i]);
-		i++;
-	}
+
+
+void displayArray (int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n") ;
 }
-//Reverse the array
-int reverseArray(int arr[], int size) {
-	int i=0,temp;
-	while(i<size/2){
-		temp=arr[i];
-		arr[i]=arr[size-i-1];
-		arr[size-i-1]=temp;
-		i++;
-	}
-	return temp;
+
+
+void reverseArray(int arr[], int n) {
+    for (int i = 0; i < n / 2; i++) {
+        int temp = arr[i];
+        arr[i] = arr[n - i - 1];
+        arr[n - i - 1] = temp;
+		
+    }
 }
-//Sorting of an array
-int sortArray(int arr[], int size){
-	int i=0,j=0,x;
-	while(i<size-1){
-		while(j<size-i-1){
-			if(arr[j]>arr[j+1]){
-				x=arr[j];
-				arr[j]=arr[j+1];
-            	arr[j+1]=x;
-			}
-			j++;
-		}
-		i++;
-	}
-	int t=0;
-	while(t<size){
-		printf("%d ",arr[t]);
-		t++;
-	}
+
+
+void sortArray (int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+				
+            }
+        }
+		
+    }
+
+    printf ("Sorted Array: ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
 }
-//Linear searching in the array
-int linearSearch(int arr[], int size, int value){
-	int i=0;
-	while(i<size){
-		if(arr[i]==value){
-			return i;
-		}
-		i++;
-	}
-    return -1;	//Index start from 0 in array
+
+
+int linearSearch(int arr[], int n, int key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key)
+            return i;
+    }
+    return -1;  
 }
